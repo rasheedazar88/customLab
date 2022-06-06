@@ -26,13 +26,18 @@ const SegmentForm = () => {
         setshowModal(!showModal)
     }
 
-    const handleSubmit = async() => {
+    const handleSubmit = async () => {
+        let headers = new Headers();
+
+        headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+
         console.log(segment)
         const url = "https://webhook.site/e4556e5e-abbd-4d53-b199-c3e5c4d103f7";
 
         await fetch(url, {
             method: "POST",
             body: segment,
+            headers: headers
         })
             .then((response) => response.json())
             .then((data) => console.log("File has been sent Successfully", data));
