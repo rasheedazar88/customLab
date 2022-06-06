@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #989898;
+}
+
+.App {
+    position: relative;
+}
+
+.header {
+    background-color: #39aebc;
+    padding: 25px 0;
+    color: #fff;
+    font-weight: 700;    
+}
+.header-left {
+    margin-left: 15px;
+}
+.header-icon {
+    margin-right: 20px;
+}
+
+
+.segment-form {
+    width: 100%;
+    height: calc(100vh - 69px);
+}
+.add-segment-btn {
+    margin-left: 85px;
+    margin-top: 20px;
+}
+.add-segment-btn button {
+    padding: 10px 15px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    cursor: pointer;
+}
+.modal {
+    display: none;
+}
+.modal.is-visible {
+    display: block;
+}
+
+.modal .header-icon {
+    cursor: pointer;
+}
+
+.add-new-segment {
+    position: fixed;
+    z-index: 1090;
+    top: 0;
+    left: 0;
+    right: -315px;
+    bottom: 0;
+    display: flex;
+    justify-content: end;
+    align-items: flex-start;
+    background-color: rgba(0,0,0,.75);
+    transition: all 1s ease;
+}
+
+.is-visible .add-new-segment {
+    right: 0;
+    transition: all 1s ease;
+}
+
+.add-new-segment-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 315px;
+}
+
+.new-segment-container {
+    height: calc(100vh - 69px);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 15px;
+    justify-content: space-between;
+}
+
+.new-segment-text {
+    margin: 15px 0;
+    padding: 10px 15px;
+}
+
+.traits {
+    display: flex;
+    justify-content: end;
+    gap: 15px;
+}
+.traits div {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+.traits .icon {
+    width: 9px;
+    height: 9px;
+    display: block;
+    border-radius: 50%;
+    background-color:  #5ddb78;
+}
+
+.icon.red {
+    background-color: #d24572;
+}
+
+.btn-container {
+    display: flex;
+}
+.btn {
+    padding: 10px 12px;
+    border-radius: 5px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+}
+.btn-add-new {
+    background: transparent;
+    color: #41b494;
+    text-decoration: underline;
+}
+.btn-save {
+    background-color: #41b494;
+    color: #fff;
+}
+.btn-cancel {
+    background-color: transparent;
+    color: #d24572;
+}
+
+.dropdown {
+    cursor: pointer;
+    position: relative;
+}
+
+.dropdown-options {
+    display: none;
+    position: absolute;
+    z-index: 99;
+    background: #fff;
+    width: 100%;
+    padding: 5px;
+}
+.dropdown-options.is-visible {
+    display: block;
+}
+.dropdown button {
+    background-color: transparent;
+    border: none;
+}
+.dropbtn {
+    transform: rotate(270deg);
+}
+.dropbtn.null {
+    transform: rotate(0deg);
+}
+.dropdown-options option {
+    padding: 5px 0;
+}
+.dropdown-label {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 12px;
+    margin: 3px 0;
+}
+.row2 {
+    min-height: 300px;
+}
+.added {
+    max-height: 300px;
+    overflow: scroll;
+    margin-bottom: 15px;
+}
+.added::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+    padding: 10px;
+    border: 1px solid blue;
+}
