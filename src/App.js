@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <Header heading = "View Audience"/>
       <SegmentForm />
-      <marquee direction="left" height="fit-content" width="100%">I have successfully completed the task that you given. </marquee>
+      <marquee direction="left" height="fit-content" width="100%">I have successfully completed the task you have given me. </marquee>
     </div>
   );
 }
