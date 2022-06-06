@@ -35,7 +35,6 @@ const SegmentForm = () => {
             return setshowOptions(null);
         }
         setshowOptions(key)
-        console.log(showOptions)
     }
 
     const handleSubmitSchema = (value, label) => {
@@ -49,7 +48,6 @@ const SegmentForm = () => {
         let newarr = segment;
         newarr['schema'].push({ 'value': schemaValue.value, 'Label': schemaValue.Label })
         setsegment(newarr)
-        console.log(segment)
     }
 
 
@@ -89,15 +87,15 @@ const SegmentForm = () => {
                             </div>
                             <div className='row2'>
                                 <ul className='added'>
-                                    {segment.schema.map((item) => (
+                                    {segment.schema.map((item, index) => (
                                         <div className='dropdown'>
-                                            <div className='dropdown-label' onClick={() => handleDropDown("schema")}>
+                                            <div className='dropdown-label' onClick={() => handleDropDown(index)}>
                                                 <span>{item.Label}</span>
-                                                <button onClick={() => handleDropDown("schema")} className={`dropbtn ${showOptions}`}>
+                                                <button onClick={() => handleDropDown(index)} className={`dropbtn ${showOptions}`}>
                                                     <i className="fa-solid fa-chevron-left"></i>
                                                 </button>
                                             </div>
-                                            <div className={`dropdown-options ${showOptions ? 'is-visible' : ''}`} >
+                                            <div className={`dropdown-options ${showOptions === index ? 'is-visible' : ''}`} >
                                                 {
                                                     schemaList.map((item, index) => (
                                                         <option value={item.value} onClick={(e) => handleSubmitSchema(e.target.value, item.Label)}>{item.Label}</option>
