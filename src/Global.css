@@ -28,6 +28,7 @@ body {
 
 .segment-form {
     width: 100%;
+    height: calc(100vh - 112px);
 }
 .add-segment-btn {
     margin-left: 85px;
@@ -186,15 +187,47 @@ body {
     max-height: 300px;
     overflow: scroll;
     margin-bottom: 15px;
-    border: 1px solid #ddd;
-    background-color: #41b494;
+    border: 2px solid #41b494;
 }
 .added .dropdown {
     padding: 0 5px;
+}
+.added .dropdown div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.checkbox {
+    width: 33px !important;
+    height: 33px;
+    background-color: #f2fbf9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .added::-webkit-scrollbar {
     height: 0;
     width: 0;
     padding: 10px;
     border: 1px solid blue;
+}
+
+marquee {
+    background-color: transparent;
+}
+
+input[type="checkbox"]:not(:checked)::after {
+    content: '';
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3C!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --%3E%3Cpath d='M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z'/%3E%3C/svg%3E");;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 46%;
+    
+    transform: translate(-50%, -50%);
+    content: '';
+    height: 20px;
+    background-repeat: no-repeat;
+    background-position: right;
+    
 }

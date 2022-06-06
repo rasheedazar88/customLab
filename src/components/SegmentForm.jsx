@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Header } from './Header'
 
 const SegmentForm = () => {
     const [showModal, setshowModal] = useState(false)
@@ -58,7 +57,6 @@ const SegmentForm = () => {
     }
 
     const handleUpdateSchema = (value, label, index) => {
-        console.log(value, label, index)
         let newarr = segment;
         newarr.schema[index].value = value;
         newarr.schema[index].Label = label;
@@ -111,11 +109,17 @@ const SegmentForm = () => {
                                 <ul className='added'>
                                     {segment.schema.map((item, index) => (
                                         <div className='dropdown'>
-                                            <div className='dropdown-label' onClick={() => handleDropDown(index)}>
-                                                <span>{item.Label}</span>
-                                                <button onClick={() => handleDropDown(index)} className={`dropbtn ${showOptions}`}>
-                                                    <i className="fa-solid fa-chevron-left"></i>
-                                                </button>
+                                            <div>
+                                                <div className='dropdown-label' onClick={() => handleDropDown(index)}>
+                                                    <span>{item.Label}</span>
+                                                    <button onClick={() => handleDropDown(index)} className={`dropbtn ${showOptions}`}>
+                                                        <i className="fa-solid fa-chevron-left"></i>
+                                                    </button>
+                                                </div>
+                                                <div className='checkbox'>
+                                                    <input type="checkbox" />
+                                                </div>
+                                                
                                             </div>
                                             <div className={`dropdown-options ${showOptions === index ? 'is-visible' : ''}`} >
                                                 {
@@ -157,6 +161,7 @@ const SegmentForm = () => {
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }
