@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/customLab/static/css/main.47290eb0.css",
+    "main.js": "/customLab/static/js/main.84f2c688.js",
+    "index.html": "/customLab/index.html",
+    "main.47290eb0.css.map": "/customLab/static/css/main.47290eb0.css.map",
+    "main.84f2c688.js.map": "/customLab/static/js/main.84f2c688.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.47290eb0.css",
+    "static/js/main.84f2c688.js"
+  ]
+}
