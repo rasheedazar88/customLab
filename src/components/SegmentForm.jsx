@@ -8,9 +8,9 @@ const SegmentForm = () => {
     const [schemaValue, setschemaValue] = useState({ "value": "", "Label": "" })
 
     const [schemaList, setschemaList] = useState([{ "value": 'first_name', "Label": 'First Name' }, { "value": 'last_name', "Label": 'Last Name' }, { "value": 'gender', "Label": 'Gender' }, { "value": 'age', "Label": 'Age' }, { "value": 'account_name', "Label": 'Account Name' }, { "value": 'city', "Label": 'City' }, { "value": 'state', "Label": 'State' }])
+
     const handleChange = (key) => {
         let newArr = segment;
-        // newArr.segment_name = segment.schema; 
 
         setsegment({
             segment_name: key,
@@ -26,8 +26,16 @@ const SegmentForm = () => {
         setshowModal(!showModal)
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async() => {
         console.log(segment)
+        const url = "https://webhook.site/e4556e5e-abbd-4d53-b199-c3e5c4d103f7";
+
+        await fetch(url, {
+            method: "POST",
+            body: segment,
+        })
+            .then((response) => response.json())
+            .then((data) => console.log("File has been sent Successfully", data));
     }
 
     const handleDropDown = (key) => {
@@ -44,10 +52,19 @@ const SegmentForm = () => {
         setshowOptions(false)
     }
 
+    const handleUpdateSchema = (value, label, index) => {
+        console.log(value, label, index)
+        let newarr = segment;
+        newarr.schema[index].value = value;
+        newarr.schema[index].Label = label;
+        setsegment(newarr)
+        handleDropDown();
+    }
     const addNewSchema = () => {
         let newarr = segment;
         newarr['schema'].push({ 'value': schemaValue.value, 'Label': schemaValue.Label })
         setsegment(newarr)
+        handleDropDown();
     }
 
 
@@ -97,12 +114,11 @@ const SegmentForm = () => {
                                             </div>
                                             <div className={`dropdown-options ${showOptions === index ? 'is-visible' : ''}`} >
                                                 {
-                                                    schemaList.map((item, index) => (
-                                                        <option value={item.value} onClick={(e) => handleSubmitSchema(e.target.value, item.Label)}>{item.Label}</option>
+                                                    schemaList.map((item, key) => (
+                                                        <option value={item.value} onClick={(e) => handleUpdateSchema(e.target.value, item.Label, index)}>{item.Label}</option>
                                                     ))
                                                 }
                                             </div>
-
                                         </div>
                                     ))
 
@@ -118,7 +134,7 @@ const SegmentForm = () => {
                                             <i className="fa-solid fa-chevron-left"></i>
                                         </button>
                                     </div>
-                                    <div className={`dropdown-options ${showOptions ? 'is-visible' : ''}`} >
+                                    <div className={`dropdown-options ${showOptions === 'schema' ? 'is-visible' : ''}`} >
                                         {
                                             schemaList.map((item, index) => (
                                                 <option value={item.value} onClick={(e) => handleSubmitSchema(e.target.value, item.Label)}>{item.Label}</option>

@@ -17,7 +17,7 @@ body {
     background-color: #39aebc;
     padding: 25px 0;
     color: #fff;
-    font-weight: 700;    
+    font-weight: 700;
 }
 .header-left {
     margin-left: 15px;
@@ -26,10 +26,8 @@ body {
     margin-right: 20px;
 }
 
-
 .segment-form {
     width: 100%;
-    height: calc(100vh - 69px);
 }
 .add-segment-btn {
     margin-left: 85px;
@@ -63,7 +61,7 @@ body {
     display: flex;
     justify-content: end;
     align-items: flex-start;
-    background-color: rgba(0,0,0,.75);
+    background-color: rgba(0, 0, 0, 0.75);
     transition: all 1s ease;
 }
 
@@ -85,6 +83,7 @@ body {
     flex-direction: column;
     padding: 20px 15px;
     justify-content: space-between;
+    overflow: scroll;
 }
 
 .new-segment-text {
@@ -107,7 +106,7 @@ body {
     height: 9px;
     display: block;
     border-radius: 50%;
-    background-color:  #5ddb78;
+    background-color: #5ddb78;
 }
 
 .icon.red {
@@ -144,15 +143,19 @@ body {
 }
 
 .dropdown-options {
-    display: none;
-    position: absolute;
+    /* position: absolute; */
     z-index: 99;
     background: #fff;
     width: 100%;
-    padding: 5px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
 }
 .dropdown-options.is-visible {
-    display: block;
+    max-height: fit-content;
+    -moz-transition: max-height 1s ease;
+    -webkit-transition: max-height 1s ease;
+    -o-transition: max-height 1s ease;
 }
 .dropdown button {
     background-color: transparent;
@@ -167,6 +170,7 @@ body {
 .dropdown-options option {
     padding: 5px 0;
 }
+
 .dropdown-label {
     display: flex;
     justify-content: space-between;
@@ -182,6 +186,9 @@ body {
     max-height: 300px;
     overflow: scroll;
     margin-bottom: 15px;
+    border: 1px solid #ddd;
+    background-color: #41b494;
+    padding: 5px;
 }
 .added::-webkit-scrollbar {
     height: 0;
