@@ -77,6 +77,11 @@ body {
     max-width: 315px;
 }
 
+.added .is-visible {
+    flex-direction: column;
+    align-items: flex-start !important;
+}
+
 .new-segment-container {
     height: calc(100vh - 69px);
     background-color: #fff;
