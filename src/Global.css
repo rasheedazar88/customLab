@@ -89,7 +89,7 @@ body {
     display: flex;
     flex-direction: column;
     padding: 20px 15px;
-    justify-content: space-between;
+    justify-content: flex-start;
     overflow: scroll;
 }
 
@@ -238,55 +238,9 @@ input[type="checkbox"]:not(:checked)::after {
     height: 20px;
     background-repeat: no-repeat;
     background-position: right;
-    
 }
 
 
 
 
 
-
-
-
-.App{
-    background: lightgray;
-    height: 100vh;
-  }
-  
-  
-  .items{
-    padding: 60px 160px;
-    display: flex;
-    /* align-items: center; */
-    justify-content: space-between;
-  }
-  
-  .pending,.completed{
-    background: #ffffff;
-    width: 400px;
-    padding: 10px 20px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  }
-  
-  .item{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  button{
-    cursor: pointer;
-    padding: 5px 10px;
-    outline: none;
-    border-radius: 10px;
-    border: none;
-  }
-  
-  .mark_complete{
-    background: greenyellow;
-  }
-  
-  .mark_pending{
-    background: tomato;
-    color: #ffffff;
-  }
