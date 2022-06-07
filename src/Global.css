@@ -40,6 +40,7 @@ body {
     border: 2px solid #fff;
     color: #fff;
     cursor: pointer;
+    border-radius: 0;
 }
 .modal {
     display: none;
