@@ -175,7 +175,8 @@ body {
     transform: rotate(0deg);
 }
 .dropdown-options option {
-    padding: 5px 0;
+    padding: 5px 10px;
+    border-bottom: 1px solid #ddd;
 }
 
 .dropdown-label {
