@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/customLab/static/css/main.71176039.css",
-    "main.js": "/customLab/static/js/main.6b1cf71b.js",
+    "main.js": "/customLab/static/js/main.9235a3bd.js",
     "index.html": "/customLab/index.html",
     "main.71176039.css.map": "/customLab/static/css/main.71176039.css.map",
-    "main.6b1cf71b.js.map": "/customLab/static/js/main.6b1cf71b.js.map"
+    "main.9235a3bd.js.map": "/customLab/static/js/main.9235a3bd.js.map"
   },
   "entrypoints": [
     "static/css/main.71176039.css",
-    "static/js/main.6b1cf71b.js"
+    "static/js/main.9235a3bd.js"
   ]
 }
