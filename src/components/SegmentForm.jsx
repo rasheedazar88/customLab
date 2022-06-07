@@ -4,9 +4,11 @@ const SegmentForm = () => {
     const [showModal, setshowModal] = useState(false)
     const [segment, setsegment] = useState({ "segment_name": "", "schema": [] })
     const [showOptions, setshowOptions] = useState(null)
-    const [schemaValue, setschemaValue] = useState({ "value": "", "Label": "" })
-
+    const [schemaValue, setschemaValue] = useState({ "value": "reset", "Label": "Add schema to segment" })
+    const [showError, setshowError] = useState(false)
     const [schemaList, setschemaList] = useState([{ "value": 'first_name', "Label": 'First Name' }, { "value": 'last_name', "Label": 'Last Name' }, { "value": 'gender', "Label": 'Gender' }, { "value": 'age', "Label": 'Age' }, { "value": 'account_name', "Label": 'Account Name' }, { "value": 'city', "Label": 'City' }, { "value": 'state', "Label": 'State' }])
+
+    const [removeCurrent, setremoveCurrent] = useState({ "value": "", "Label": "" })
 
     const handleChange = (key) => {
         let newArr = segment;
@@ -16,11 +18,6 @@ const SegmentForm = () => {
             schema: newArr.schema
         })
     }
-
-    useEffect(() => {
-
-    }, [segment])
-
     const handletoggle = (key) => {
         setshowModal(!showModal)
     }
@@ -42,11 +39,15 @@ const SegmentForm = () => {
             .then((data) => console.log("File has been sent Successfully", data));
     }
 
-    const handleDropDown = (key) => {
-        if (showOptions === key) {
+    const handleDropDown = async (value, label, index) => {
+        removeCurrent.value = value;
+        removeCurrent.Label = label;
+        setremoveCurrent(removeCurrent)
+
+        if (showOptions === index) {
             return setshowOptions(null);
         }
-        setshowOptions(key)
+        setshowOptions(index)
     }
 
     const handleSubmitSchema = (value, label) => {
@@ -61,13 +62,29 @@ const SegmentForm = () => {
         newarr.schema[index].value = value;
         newarr.schema[index].Label = label;
         setsegment(newarr)
-        handleDropDown();
+        setshowOptions(false)
+
+
+        var allItems = schemaList;
+        allItems.push({'value': removeCurrent.value, 'Label': removeCurrent.Label})
+        allItems.splice(allItems.findIndex(item => item.value === value), 1)
+        setschemaList(allItems)        
     }
-    const addNewSchema = () => {
-        let newarr = segment;
-        newarr['schema'].push({ 'value': schemaValue.value, 'Label': schemaValue.Label })
-        setsegment(newarr)
-        handleDropDown();
+    const addNewSchema = (value, label) => {
+        if (value == 'reset') {
+            setshowError(true)
+        } else {
+            setshowError(false)
+            let newarr = segment;
+            newarr['schema'].push({ 'value': schemaValue.value, 'Label': schemaValue.Label })
+            setsegment(newarr)
+            handleDropDown();
+
+            let initial = ({ "value": "reset", "Label": "Add schema to segment" })
+            setschemaValue(initial)
+            let allItems = schemaList;
+            allItems.splice(allItems.findIndex(item => item.value === value), 1)
+        }
     }
 
 
@@ -110,16 +127,16 @@ const SegmentForm = () => {
                                     {segment.schema.map((item, index) => (
                                         <div className='dropdown'>
                                             <div>
-                                                <div className='dropdown-label' onClick={() => handleDropDown(index)}>
+                                                <div className='dropdown-label' onClick={() => handleDropDown(item.value, item.Label, index)}>
                                                     <span>{item.Label}</span>
-                                                    <button onClick={() => handleDropDown(index)} className={`dropbtn ${showOptions}`}>
+                                                    <button onClick={() => handleDropDown(item.value, item.label, index)} className={`dropbtn ${showOptions === index ? 'is-visible' : ''}`}>
                                                         <i className="fa-solid fa-chevron-left"></i>
                                                     </button>
                                                 </div>
                                                 <div className='checkbox'>
                                                     <input type="checkbox" />
                                                 </div>
-                                                
+
                                             </div>
                                             <div className={`dropdown-options ${showOptions === index ? 'is-visible' : ''}`} >
                                                 {
@@ -137,9 +154,9 @@ const SegmentForm = () => {
                                 </ul>
 
                                 <div className='dropdown'>
-                                    <div className='dropdown-label' onClick={() => handleDropDown("schema")}>
-                                        <span>{schemaValue.value ? schemaValue.Label : 'Add schema to segment'}</span>
-                                        <button onClick={() => handleDropDown("schema")} className={`dropbtn ${showOptions}`}>
+                                    <div className='dropdown-label' onClick={() => handleDropDown(schemaValue.value, schemaValue.Label, "schema")}>
+                                        <span>{schemaValue.Label}</span>
+                                        <button onClick={() => handleDropDown(schemaValue.value, schemaValue.Label, "schema")} className={`dropbtn ${showOptions === 'schema' ? 'is-visible' : ''}`}>
                                             <i className="fa-solid fa-chevron-left"></i>
                                         </button>
                                     </div>
@@ -151,9 +168,8 @@ const SegmentForm = () => {
                                         }
                                     </div>
                                 </div>
-                                <button className='btn-add-new btn' onClick={() => addNewSchema()}>+ Add new schema</button>
-                            </div>
-                            <div className='row3 btn-container'>
+                                <button className='btn-add-new btn' onClick={() => addNewSchema(schemaValue.value, schemaValue.Label)}>+ Add new schema</button>
+                                <span style={{ color: 'red', display: showError ? 'block' : 'none' }}>Select Schema from Dropdown List</span>
                                 <button className='btn-save btn' onClick={handleSubmit}>Save the Segment</button>
                                 <button className='btn-cancel btn' onClick={() => setshowModal(false)}>Cancel</button>
                             </div>
