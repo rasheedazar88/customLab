@@ -66,9 +66,9 @@ const SegmentForm = () => {
 
 
         var allItems = schemaList;
-        allItems.push({'value': removeCurrent.value, 'Label': removeCurrent.Label})
+        allItems.push({ 'value': removeCurrent.value, 'Label': removeCurrent.Label })
         allItems.splice(allItems.findIndex(item => item.value === value), 1)
-        setschemaList(allItems)        
+        setschemaList(allItems)
     }
     const addNewSchema = (value, label) => {
         if (value == 'reset') {
@@ -170,8 +170,10 @@ const SegmentForm = () => {
                                 </div>
                                 <button className='btn-add-new btn' onClick={() => addNewSchema(schemaValue.value, schemaValue.Label)}>+ Add new schema</button>
                                 <span style={{ color: 'red', display: showError ? 'block' : 'none' }}>Select Schema from Dropdown List</span>
-                                <button className='btn-save btn' onClick={handleSubmit}>Save the Segment</button>
-                                <button className='btn-cancel btn' onClick={() => setshowModal(false)}>Cancel</button>
+                                <div style={{marginTop: '10px'}}>
+                                    <button className='btn-save btn' onClick={handleSubmit}>Save the Segment</button>
+                                    <button className='btn-cancel btn' onClick={() => setshowModal(false)}>Cancel</button>
+                                </div>
                             </div>
                         </div>
                     </div>
